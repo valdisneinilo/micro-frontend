@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  one:
+    container_name: one
+    build:
+      context: ./one
+
+  two:
+    container_name: two
+    build:
+      context: ./two
+
+  three:
+    container_name: three
+    build:
+      context: ./three
+
+  orchestrator:
+    container_name: orchestrator
+    ports:
+      - 81:80
+    depends_on:
+      - one
+      - two
+      - three
+    build:
+      context: .
